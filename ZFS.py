@@ -1,4 +1,4 @@
-from dataload import read_posts_from_file
+from loaddata import read_posts_from_file
 from recommendation import get_completion, messages
 
 posts = read_posts_from_file()

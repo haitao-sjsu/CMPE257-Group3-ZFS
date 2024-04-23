@@ -5,7 +5,7 @@ Oh, I hate to write document because of my broken English. If anyone could help 
 ## Basic ideas
 As we discussed before, the basic processdure should be like:
 
-1. Load the dataset from memory. This is done in `dataload.py`.
+1. Load the dataset from memory. This is done in `loaddata.py`.
 2. Beofore we feed the data to ChatGpt, we did some classfications. This is be done in `classfication.py`.
 3. We use LLM do the recommendation. This is done in `recommendation.py`.
 4. We run our program from `ZFS.py`. The command is quite straightforward:

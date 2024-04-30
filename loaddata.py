@@ -21,7 +21,7 @@ Hello everyone! I am looking for some room for the Sp24. Below are some requirem
 
 - I am a guy, a SJSU international stduent not having SSN/income/credit score yet.
 - budget <$1300
-- walkable/ridable distance to campus
+- walkable/ridable distance to the campus
 - single room required, open to shared bathroom
 - cooking enabled in the kitchen
 - quiet environment preferred

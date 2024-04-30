@@ -1,62 +1,47 @@
-import openai
+import math
+import json
+from retrieval import retrieval
+from match_with_embedding import match
 
-MODEL = "gpt-3.5-turbo"
-client = openai.OpenAI()
+def match_score(post, usr_query):
+    post_dict = json.loads(retrieval(post))
+    usr_dict = json.loads(retrieval(usr_query))
+    match_score_list = []
 
-delimiter = "####"
+    for key, post_value in post_dict.items():
+        usr_value = usr_dict[key]
+        if post_value == 'unknown' or usr_value == 'unknown':
+            match_score = 1
+        elif key == 'type':
+            match_score = 1 if post_value == 'supply' and usr_value == 'demand' else 0
+        elif key == 'gender':
+            match_score = 0 if post_value == 'male' and usr_value == 'female' or post_value == 'female' and usr_value == 'male' else 1
+        elif key == 'price':
+            if post_value <= usr_value:
+                match_score = 1
+            elif post_value <= usr_value * 1.2:
+                match_score = 0.5
+            else:
+                match_score = 0
+        else:
+            post_str = f"{key}: {post_value}"
+            user_str = f"{key}: {usr_value}"
+            match_score = match(post_str, user_str)
+        match_score_list.append(match_score)
+        if post_value != 'unknown' or usr_value != 'unknown':
+            print(f"post[{key}]:{post_value}")
+            print(f"query[{key}]:{usr_value}")
+            print(f"match_score:{match_score}")
+    
+    final_score = math.prod(match_score_list)
+    return final_score
 
-def system_message_1(post):
-    return f"""
-You will be provided a leasing post and a customer query. The post and the customer query will be delimited with {delimiter} characters. You job is to judge whether the post matches the customer query or not, and explain why. Please follow these steps to answer the customer queries.
+def recommendation_list(posts, usr_query, number):
+    results = []
+    for i in range(len(posts)):
+        score = match_score(posts[i], usr_query)
+        results.append((i, score))
+    
+    results = sorted(results, key=lambda item : item[1], reverse=True)
+    return [item[0] for item in results][:number]
 
-Step 1: Jude the post type, whether it is for leasing, renting or unrelevant. If it is not for leasing, then the match fails. 
-
-Step 2: Extract information(info) from the post. The information include:
-positon
-room size
-room type
-furniture and facility
-price
-the beginning date of leasing
-the ending date of leasing
-leasing period
-contact information
-
-Step 3: Extract information(req) from the customer query.
-
-Step 4: Judge whether the info and req are matched or not. The result would be a float number between 0 and 1. The higher the score, the more likely the post is recommended to the customer query. If req are not matched with info, then score would be 0, if they perfectly match, the score would be 1.
-
-Your output format would be:
-Match score: <the result of step 4>
-Reason: in less than 50 words
-
-{delimiter}{post}{delimiter}
-"""
-
-def system_message_2(post):
-    return f"""
-You will be provided a leasing post and a customer query. The post and the customer query will be delimited with {delimiter} characters. You job is to compute the recommendation score of the post to the customer query. The score is a float number between 0 and 1. The higher the score, the more likely the post is recommended to the customer query.
-
-The output should be the recommendation score. Nothing else.
-
-This is the leasing post: {delimiter}{post}{delimiter}
-"""
-
-def messages(post, user_query):
-    return  [  
-{'role':'system', 
- 'content': system_message_1(post)},    
-{'role':'user', 
- 'content': f"This is the customer query: {delimiter}{user_query}{delimiter}"},  
-] 
-
-def get_completion(messages, model=MODEL):
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        temperature=0
-    )
-    return response.choices[0].message.content
-
-def recommendation(post, user_query):
-    return get_completion(messages(post, user_query))

@@ -15,7 +15,7 @@ from sklearn.metrics import accuracy_score
 np.random.seed(0)
 
 # Add the Data using pandas
-Corpus = pd.read_csv(r"Dataset_For_Classification/posts.csv", encoding='utf-8')
+Corpus = pd.read_csv(r"Dataset_Classification/posts.csv", encoding='utf-8')
 
 # Step - 1: Data Pre-processing - This will help in getting better results through the classification algorithms
 

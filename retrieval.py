@@ -6,7 +6,7 @@ def retrieval(post):
 
     type: there are three types of the post. 'supply' means the post from the landlords, 'demand' means the post from the tenants, and 'unknown' means the post does not belong to the above two categories.
     gender: there are two types of the gender. 'male' or 'female'. For example, some landlords only accept girls as tenants, then it should be 'female'.
-    price: the total monthly price, including rent fee, utility fee, etc. If several prices exist and the type of the post is 'supply', then output the lowest one. If several prices exist and the type of the post is 'demand', then output the highest one. The output should be a number.
+    price: the total monthly price, including rent fee, utility fee, etc. If several prices exist and the type of the post is 'supply', then output the lowest one. If several prices exist and the type of the post is 'demand', then output the highest one. The output should be a float number.
     bedroom: If the roome is private/single, output 'single'; if the room is shared, output 'shared'.
     bathroom: for example, is the bathroom or restroom private/single or shared.
     distance to SJSU: for example, 10 min driving distance to SJSU.

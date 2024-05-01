@@ -20,22 +20,22 @@ def euclidean_distance(v1, v2):
 def manhattan_distance(v1, v2):
     return np.sum(np.abs(v1 - v2))
 
-def distance(post, usr_query):
+def distance_fine_grained(post, usr_demand):
     post_dict = json.loads(retrieval(post))
-    usr_dict = json.loads(retrieval(usr_query))
+    usr_dict = json.loads(retrieval(usr_demand))
     post_vec = vectorize(post_dict)
     usr_vec = vectorize(usr_dict)
     return manhattan_distance(post_vec, usr_vec)
 
-def distance_bk(post, usr_query):
+def distance_coarse_grained(post, usr_demand):
     post_vec = np.array(get_embedding(post))
-    usr_vec = np.array(get_embedding(usr_query))
+    usr_vec = np.array(get_embedding(usr_demand))
     return manhattan_distance(post_vec, usr_vec)
 
-def recommendation_list(posts, usr_query, number):
+def recommendation_list(posts, usr_demand, number):
     results = []
     for i in range(len(posts)):
-        dist = distance(posts[i], usr_query)
+        dist = distance_fine_grained(posts[i], usr_demand)
         results.append((i, dist))
     
     results = sorted(results, key=lambda item : item[1], reverse=False)

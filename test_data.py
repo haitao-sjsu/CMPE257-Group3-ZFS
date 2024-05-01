@@ -7,7 +7,7 @@ simple_posts_for_test = [
     #"I wanna sublease my room. ",
 ]
 
-simple_queries_for_test = [
+simple_demands_for_test = [
     "I am looking for a room. I am a guy.",
     "I am looking for a room. My budget is less than $1300",
     "I am looking for a room. I hope the room is within a five-minute walk of campus",
@@ -19,7 +19,7 @@ simple_queries_for_test = [
     #"I am looking for a room. ",
 ]
 
-complicated_queries_for_test = [
+complicated_demands_for_test = [
 """Hello everyone! I am looking for some room for the Sp24. Below are some requirements:
 
 - I am a guy, a SJSU international stduent not having SSN/income/credit score yet.

@@ -5,7 +5,7 @@ from test_data import *
 from classification_with_llm import train_with_llm, predict_with_llm
 
 def test_classification_with_llm(scale, training):
-    data = pd.read_csv(r"Dataset_For_Classification/posts.csv", encoding='utf-8')
+    data = pd.read_csv(r"Dataset_Classification/posts.csv", encoding='utf-8')
     data = data.dropna()
     if scale == 'SMALL':
         data = data.sample(frac=1).head(10)
@@ -30,6 +30,6 @@ def test_classification_with_llm(scale, training):
 test_classification_with_llm(scale='MEDIUM', training=False)
 
 #print(predict_with_llm(simple_posts_for_test))
-#print(predict_with_llm(simple_queries_for_test))
-#print(predict_with_llm(complicated_queries_for_test))
+#print(predict_with_llm(simple_demands_for_test))
+#print(predict_with_llm(complicated_demands_for_test))
 #print(predict_with_llm(complicated_posts_for_test))

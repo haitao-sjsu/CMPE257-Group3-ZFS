@@ -9,7 +9,7 @@ def train_with_llm(posts, results):
         print(get_completion(messages(sys_msg, usr_msg)))
     print(f"Training process completed. {len(posts)} posts have been fed into the llm.")
 
-def classification_with_llm(post):
+def classification(post):
     sys_msg = f"""
     You will be provided a post about renting seperated by {delimiter}. Your job is to do the classification of this post. The rules are as follows:
 

@@ -18,10 +18,6 @@ for index, row in df.iloc[800:1000].iterrows():
     if(pd.notna(row['text']) and row['Supply(Selling)_or_Demand(Buying)'] != 'Unknown') :
         response = extract_accomodation_details(row['text'])
     
-        print(row['text'], '------------------------------------')
-
-        print(response)
-
         if(pd.notna(response)):
             response = json.loads(response)
         print(response)

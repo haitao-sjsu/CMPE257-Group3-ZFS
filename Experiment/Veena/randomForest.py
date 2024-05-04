@@ -7,7 +7,7 @@ from sklearn.metrics import mean_absolute_error
 import matplotlib.pyplot as plt
 
 # Load the dataset
-data = pd.read_excel('Dataset_For_Recommendation/OFFICIAL_Labeling_dataset_facebook-groups-scraper_raw_SVM_PREDICTIONS.xlsx')
+data = pd.read_excel('OFFICIAL_Labeling_dataset_facebook-groups-scraper_raw_SVM_PREDICTIONS.xlsx')
 data = data[data['Supply(Selling)_or_Demand(Buying)'] == 'Supply']
 
 # Preprocessing

@@ -20,7 +20,7 @@ python ZFS.py
 
 ## What on earth every file and directory do
 ### Code - Classification
-`classification_with_llm.py`: This file do the classification with LLM. Basically we do the prompt engineering to get the classification response. There are two functions in the file - `classification_with_llm()` and `predict_with_llm()`, that first one did the classifcation with one post, and second did the classification with a list of posts. There is another function `train_with_llm()` which tries to train the LLM to get a better result. But the result is not good according to the test file result.
+`classification_with_llm.py`: This file does the classification with LLM. Basically we do the prompt engineering to get the classification response. There are two functions in the file - `classification_with_llm()` and `predict_with_llm()`, that first one did the classifcation with one post, and second did the classification with a list of posts. There is another function `train_with_llm()` which tries to train the LLM to get a better result. But the result is not good according to the testing result.
 
 `classification_without_llm.py`: This file try to do the classfication using some conventional technique. You could refer to the link below for detail. What it did is:
 a. Data preprocessing. Convert the text of post into a list of words.
@@ -67,12 +67,9 @@ There are several test files in the folder. `test_data.py` is a file that contai
 `Log.md`: As suggested by the name, it is the log file.
 
 ### Dataset
-`Dataset_Raw_From_Facebook`: This directory and the dataset inside is by Amen. Well done! There are 3 files, and maybe Amen could explain those files in detail. What I am using now is the raw_overview.csv.
+`Dataset_Raw_From_Facebook`: This directory and the dataset inside is by Amen. Well done! There are 3 files, and maybe Amen could explain those files in detail. What I am using now is the json file.
 
-`Dataset_Classification`: This directory should be used training the classfication algorithm. In this directory:
-
-- 1000 posts generated from raw_overview.csv
-- a classification.csv in this directory. I manually labelled the posts 1-20. For example, 1,0 means post_1.txt is a post from landlord.
+`Dataset_Classification`: This directory should be used training the classfication algorithm. 
 
 `Dataset_Recommendation`:This directory should be used training the recommendation algorithm. Now it is empty.
 

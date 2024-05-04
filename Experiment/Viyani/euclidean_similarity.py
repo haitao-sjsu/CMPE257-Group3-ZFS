@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 # Load the dataset
-housing_data = pd.read_csv('Dataset_For_Recommendation/OFFICIAL_csv_Labeling_dataset_facebook-groups-scraper_raw_SVM_PREDICTIONS.csv')
+housing_data = pd.read_csv('Veena/Dataset_For_Recommendation/OFFICIAL_CSV_Labeling_dataset_facebook-groups-scraper_raw_SVM_PREDICTIONS.csv')
 
 # Filter rows labeled as 'Supply' in the 'Supply(Selling)_or_Demand(Buying)' column
 supply_data = housing_data[housing_data['Supply(Selling)_or_Demand(Buying)'] == 'Supply'].copy()
